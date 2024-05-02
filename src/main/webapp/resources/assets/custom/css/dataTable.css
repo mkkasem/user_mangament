@@ -1,0 +1,20 @@
+body {
+    background-color: #f8f9fa;
+}
+.container {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px 0px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+/* Custom styles for DataTables search input */
+.dataTables_filter {
+    float: right;
+}
+/*   Custom styles for DataTables pagination */
+.dataTables_paginate {
+    float: right;
+}
+#userTable{
+    width:100%;
+}

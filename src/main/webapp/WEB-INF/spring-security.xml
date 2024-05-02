@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security
+		http://www.springframework.org/schema/security/spring-security.xsd">
+
+
+    <bean id="userDetailsService" class="com.dev.service.impl.UserDetailsServiceImpl"/>
+    <bean id="passwordEncoder" class="com.dev.util.CustomPasswordEncoder"/>
+
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="userDetailsService"/>
+    </security:authentication-manager>
+
+
+    <security:http use-expressions="true">
+        <security:csrf disabled="true"/>
+        <security:access-denied-handler error-page="/login"/>
+        <security:intercept-url pattern="/login" access="permitAll()"/>
+        <security:intercept-url pattern="/change-language" access="permitAll()"/>
+        <security:intercept-url pattern="/resources/**" access="permitAll()" />
+        <security:intercept-url pattern="/**" requires-channel="any" access="isFullyAuthenticated()"/>
+
+        <security:form-login login-page='/login'
+                             login-processing-url="/spring_security_check"
+                             authentication-failure-url="/login?error=true"
+                             authentication-success-handler-ref="loginAuthenticationSuccessHandler"
+                             authentication-failure-handler-ref="loginAuthenticationFailureHandler"
+                             username-parameter="userName"
+                             password-parameter="password"
+        />
+        <security:logout delete-cookies="JSESSIONID" logout-url="/logout" logout-success-url="/login?logout=true" />
+
+    </security:http>
+
+    <bean id="loginAuthenticationSuccessHandler" class="com.dev.handler.LoginAuthenticationSuccessHandler">
+        <property name="forwardUrl" value="/"/>
+    </bean>
+
+    <bean id="loginAuthenticationFailureHandler" class="com.dev.handler.LoginAuthenticationFailureHandler">
+    <property name="noAuthUrl" value="/login?error=true"/>
+    </bean>
+
+    <bean id="redirectStrategy" class="org.springframework.security.web.DefaultRedirectStrategy"/>
+
+</beans>
