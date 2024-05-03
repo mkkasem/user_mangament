@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>login page</title>
     <link rel="stylesheet" href="<c:url value="/resources/assets/css/bootstrap.min.css" />">
     <link rel="stylesheet" href="<c:url value="/resources/assets/custom/css/style.css" />">
     <link href="<c:url value="/resources/assets/css/bootstrap-select.min.css" />" rel="stylesheet">
