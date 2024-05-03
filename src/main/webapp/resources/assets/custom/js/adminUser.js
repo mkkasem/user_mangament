@@ -105,6 +105,9 @@ function updateUser(){
         birthDate,
         admin
     }
+
+    showLoader();
+
     $.ajax({
         async: true,
         cache: false,
