@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    let selectedLanguage = $.cookie('lang');
+    let selectedLanguage = $.cookie('lang') || "tr";
     $('#userTable').DataTable({
         "language":  getTranslation(selectedLanguage)
     });

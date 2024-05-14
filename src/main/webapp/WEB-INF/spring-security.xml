@@ -15,6 +15,7 @@
         <security:authentication-provider user-service-ref="userDetailsService"/>
     </security:authentication-manager>
 
+    <security:global-method-security secured-annotations="enabled" jsr250-annotations="enabled"/>
 
     <security:http use-expressions="true">
         <security:csrf disabled="true"/>

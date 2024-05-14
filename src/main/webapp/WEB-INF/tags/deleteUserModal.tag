@@ -19,8 +19,8 @@
             <div class="modal-body" id="deleteModalBody">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="deleteUserBtn" type="button" data-dismiss="modal" class="btn btn-danger">delete user</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:theme code="label.close"/></button>
+                <button id="deleteUserBtn" type="button" data-dismiss="modal" class="btn btn-danger"><spring:theme code="label.delete.user"/></button>
             </div>
         </div>
     </div>

@@ -49,8 +49,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="createUserBtn" type="button" class="btn btn-primary" onclick="createNewUser()">create user</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:theme code="label.close"/></button>
+                <button id="createUserBtn" type="button" class="btn btn-primary" onclick="createNewUser()"><spring:theme code="label.add.user"/></button>
             </div>
         </div>
     </div>

@@ -110,22 +110,22 @@ public class UserFacadeImpl implements UserFacade {
         try {
             var optionalUser = userDao.getUserById(updateUserRequest.getId());
             var isUserNameAlreadyTaken = isUsernameAlreadyTaken(updateUserRequest.getUsername());
-            if (optionalUser.isPresent()) {
-                var userToUpdate = optionalUser.get();
-                if (!updateUserRequest.getUsername().equals(userToUpdate.getUsername()) && isUserNameAlreadyTaken) {
-                    return GenerateResponse.badRequest("username already taken please select new one", null);
-                }
-                userToUpdate.setUsername(updateUserRequest.getUsername());
-                userToUpdate.setEmail(userToUpdate.getEmail());
-                userToUpdate.setPhoneNumber(updateUserRequest.getPhoneNumber());
-                userToUpdate.setBirthDate(updateUserRequest.getBirthDate());
-                userToUpdate.setRole(updateUserRequest.isAdmin() ? Role.ADMIN : Role.USER);
-                userDao.saveOrUpdate(userToUpdate);
-                String responseMessage = utils.getMessageLocalized("user.update.successfully");
-                return GenerateResponse.success(responseMessage, null);
-            } else {
+            if (!optionalUser.isPresent()) {
                 return GenerateResponse.badRequest(utils.getMessageLocalized("user.not.found"), null);
             }
+
+            var userToUpdate = optionalUser.get();
+            if (!updateUserRequest.getUsername().equals(userToUpdate.getUsername()) && isUserNameAlreadyTaken) {
+                return GenerateResponse.badRequest("username already taken please select new one", null);
+            }
+            userToUpdate.setUsername(updateUserRequest.getUsername());
+            userToUpdate.setEmail(userToUpdate.getEmail());
+            userToUpdate.setPhoneNumber(updateUserRequest.getPhoneNumber());
+            userToUpdate.setBirthDate(updateUserRequest.getBirthDate());
+            userToUpdate.setRole(updateUserRequest.isAdmin() ? Role.ADMIN : Role.USER);
+            userDao.saveOrUpdate(userToUpdate);
+            String responseMessage = utils.getMessageLocalized("user.update.successfully");
+            return GenerateResponse.success(responseMessage, null);
         } catch (Exception e) {
             LOG.error("updateUser: ", e);
             return GenerateResponse.error(utils.getMessageLocalized("label.internal.server.error"), null);

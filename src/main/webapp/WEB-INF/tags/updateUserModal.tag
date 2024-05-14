@@ -50,8 +50,8 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button id="updateUserBtn" type="button" class="btn btn-primary" onclick="updateUser()">update user</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal"><spring:theme code="label.close"/></button>
+                <button id="updateUserBtn" type="button" class="btn btn-primary" onclick="updateUser()"><spring:theme code="label.update.user"/></button>
             </div>
         </div>
     </div>

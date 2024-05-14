@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -36,6 +37,7 @@ public class UserController {
     }
 
     @PutMapping("/")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<?> updateNewUser(@RequestBody @Valid UpdateUserRequest updateUserRequest) throws JsonProcessingException {
         try {
             return userFacade.updateUser(updateUserRequest);
@@ -46,6 +48,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
+    @Secured("ROLE_ADMIN")
     public ResponseEntity<?> deleteUser(@PathVariable(name = "id") long id) throws JsonProcessingException {
         try {
             return userFacade.deleteUserById(id);
